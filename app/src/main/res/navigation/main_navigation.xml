@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/personagemFragment">
+
+    <fragment
+        android:id="@+id/personagemFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemFragment"
+        android:label="fragment_personagem_list"
+        tools:layout="@layout/fragment_personagem_list" >
+        <action
+            android:id="@+id/action_personagemFragment_to_habilidadesFragment"
+            app:destination="@id/navigation_habilidades" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_habilidades"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.HabilidadesFragment"
+        android:label="fragment_habilidades"
+        tools:layout="@layout/fragment_habilidades" >
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_vida"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.VidaFragment"
+        android:label="fragment_vida"
+        tools:layout="@layout/fragment_vida" />
+    <fragment
+        android:id="@+id/navigation_ataque"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.View.AtaqueFragment"
+        android:label="fragment_ataque"
+        tools:layout="@layout/fragment_ataque" />
+</navigation>
