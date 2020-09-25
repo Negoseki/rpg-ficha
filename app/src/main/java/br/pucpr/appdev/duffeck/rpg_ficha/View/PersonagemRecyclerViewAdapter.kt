@@ -7,7 +7,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
-import br.pucpr.appdev.duffeck.rpg_ficha.dummy.DummyContent.DummyItem
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore.DummyItem
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem].

@@ -1,4 +1,4 @@
-package br.pucpr.appdev.duffeck.rpg_ficha.dummy
+package br.pucpr.appdev.duffeck.rpg_ficha.Model
 
 import java.util.ArrayList
 import java.util.HashMap
@@ -9,7 +9,7 @@ import java.util.HashMap
  *
  * TODO: Replace all uses of this class before publishing your app.
  */
-object DummyContent {
+object DataStore {
 
     /**
      * An array of sample (dummy) items.

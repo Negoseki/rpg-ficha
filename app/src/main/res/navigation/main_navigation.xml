@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/personagemFragment"
-        android:name="br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.PersonagemFragment"
         android:label="fragment_personagem_list"
         tools:layout="@layout/fragment_personagem_list" >
         <action
@@ -28,7 +28,7 @@
         tools:layout="@layout/fragment_vida" />
     <fragment
         android:id="@+id/navigation_ataque"
-        android:name="br.pucpr.appdev.duffeck.rpg_ficha.View.AtaqueFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.AtaqueFragment"
         android:label="fragment_ataque"
         tools:layout="@layout/fragment_ataque" />
 </navigation>

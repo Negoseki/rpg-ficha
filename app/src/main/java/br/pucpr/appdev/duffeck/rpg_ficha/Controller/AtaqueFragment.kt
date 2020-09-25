@@ -1,4 +1,4 @@
-package br.pucpr.appdev.duffeck.rpg_ficha.View
+package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

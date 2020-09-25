@@ -1,4 +1,4 @@
-package br.pucpr.appdev.duffeck.rpg_ficha.View
+package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity

@@ -1,4 +1,4 @@
-package br.pucpr.appdev.duffeck.rpg_ficha.View
+package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
 import android.os.Bundle
 import android.util.Log
@@ -9,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.R
-import br.pucpr.appdev.duffeck.rpg_ficha.dummy.DummyContent
+import br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemRecyclerViewAdapter
 
 /**
  * A fragment representing a list of Items.
@@ -35,17 +36,19 @@ class PersonagemFragment : Fragment() {
         (context as MainActivity).toggleBottomNavigation(false)
         val view = inflater.inflate(R.layout.fragment_personagem_list, container, false)
         lista = view.findViewById<RecyclerView>(R.id.list)
-        //lista?.setPadding(0, 0, 0, 0)
         val gestureDetector =
             GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
                     e?.let {
                         val view = lista?.findChildViewUnder(e.x, e.y)
                         view?.let {
-                            val position = lista?.getChildAdapterPosition(view)
-                            val item = DummyContent.ITEMS[position!!]
+                                val position = lista?.getChildAdapterPosition(view)
+                            val item = DataStore.ITEMS[position!!]
                             val bundle = bundleOf("position" to position)
-                            findNavController().navigate(R.id.action_personagemFragment_to_habilidadesFragment, bundle)
+                            findNavController().navigate(
+                                R.id.action_personagemFragment_to_habilidadesFragment,
+                                bundle
+                            )
                             Log.d("aaaaaaaaaaaaaa", item.content.toString())
                         }
                     }
@@ -77,7 +80,7 @@ class PersonagemFragment : Fragment() {
                 }
                 adapter =
                     PersonagemRecyclerViewAdapter(
-                        DummyContent.ITEMS
+                        DataStore.ITEMS
                     )
             }
         }
