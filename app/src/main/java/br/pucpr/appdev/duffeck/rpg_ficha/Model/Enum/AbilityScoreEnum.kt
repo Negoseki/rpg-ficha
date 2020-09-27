@@ -1,4 +1,4 @@
-package br.pucpr.appdev.duffeck.rpg_ficha.Model
+package br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum
 
 enum class AbilityScoreEnum(val value: String) {
     STRENGTH("strength"),
