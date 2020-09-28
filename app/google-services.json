@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "122273457675",
+    "firebase_url": "https://ficha-rpg-290622.firebaseio.com",
+    "project_id": "ficha-rpg-290622",
+    "storage_bucket": "ficha-rpg-290622.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:122273457675:android:5045b9cf42e1660270c90e",
+        "android_client_info": {
+          "package_name": "br.pucpr.appdev.duffeck.rpg_ficha"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "122273457675-g6rdfd5vebip3c4qkh8t23d627qtsnem.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCkDCWsD_Vp-7u8QFabKuYyQ-dTJF3K-4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "122273457675-g6rdfd5vebip3c4qkh8t23d627qtsnem.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

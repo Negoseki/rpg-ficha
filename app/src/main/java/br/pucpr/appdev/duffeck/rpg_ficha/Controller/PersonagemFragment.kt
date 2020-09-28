@@ -12,6 +12,10 @@ import androidx.recyclerview.widget.RecyclerView
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 import br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemRecyclerViewAdapter
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.FirebaseApp
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class PersonagemFragment : Fragment() {
 
@@ -81,6 +85,16 @@ class PersonagemFragment : Fragment() {
                     )
             }
         }
+
+        val botao = view.findViewById<FloatingActionButton>(R.id.btnAdd)
+
+        botao.setOnClickListener {
+            val database = Firebase.database.reference
+            val chave = database.child("personagens").push().key
+            database.child("personagens").child(chave!!).setValue("eiiiita")
+
+        }
+
         return view
     }
 
@@ -98,4 +112,6 @@ class PersonagemFragment : Fragment() {
                 }
             }
     }
+
+
 }

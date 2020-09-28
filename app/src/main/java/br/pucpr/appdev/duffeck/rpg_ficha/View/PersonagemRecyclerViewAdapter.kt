@@ -5,17 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
-import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore.DummyItem
-import org.w3c.dom.Text
 
-/**
- * [RecyclerView.Adapter] that can display a [DummyItem].
- * TODO: Replace the implementation with code for your data type.
- */
 class PersonagemRecyclerViewAdapter(
     private val characterSheetList: List<CharacterSheet>
 ) : RecyclerView.Adapter<PersonagemRecyclerViewAdapter.ViewHolder>() {
