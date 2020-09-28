@@ -1,8 +1,10 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Model
 
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 
-
+@IgnoreExtraProperties
 class Skill(
     var key: String,
     var name: String,
@@ -11,6 +13,17 @@ class Skill(
     var bonus: Int = 0
     var isProeficiency: Boolean = false
 
+
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "key" to key,
+            "name" to name,
+            "abilityScore" to abilityScore,
+            "bonus" to bonus,
+            "isProeficiency" to isProeficiency
+        )
+    }
 }
 
 //enum class ExpertiseEnum(val value: String) : Expertise {

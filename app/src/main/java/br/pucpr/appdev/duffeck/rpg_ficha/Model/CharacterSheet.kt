@@ -4,25 +4,28 @@ import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.RaceEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.SkillEnum
+import com.google.firebase.database.Exclude
+import com.google.firebase.database.IgnoreExtraProperties
 
+@IgnoreExtraProperties
 class CharacterSheet(
-    var name: String,
-    var playerName: String,
-    var race: String,
-    var characterClasses: MutableList<CharacterClass>,
-    var antecedent: String,
-    var alignment: String,
-    var experiencePoints: Int,
-    var strength: Int,
-    var dexterity: Int,
-    var constitution: Int,
-    var charisma: Int,
-    var wisdom: Int,
-    var intelligence: Int,
-    var inspiration: Boolean,
-    var proficiencyBonus: Int,
-    var resistanceTests: MutableList<AbilityScoreEnum>,
-    var skills: MutableList<Skill>
+    var name: String = "",
+    var playerName: String = "",
+    var race: String = "",
+    var characterClasses: MutableList<CharacterClass> = arrayListOf(),
+    var antecedent: String = "",
+    var alignment: String = "",
+    var experiencePoints: Int = 0,
+    var strength: Int = 0,
+    var dexterity: Int = 0,
+    var constitution: Int = 0,
+    var charisma: Int = 0,
+    var wisdom: Int = 0,
+    var intelligence: Int = 0,
+    var inspiration: Boolean = false,
+    var proficiencyBonus: Int = 0,
+    var resistanceTests: MutableList<AbilityScoreEnum> = arrayListOf(),
+    var skills: MutableList<Skill> = arrayListOf()
 ) {
 
     init {
@@ -185,5 +188,28 @@ class CharacterSheet(
             }
         }
         return 0
+    }
+
+    @Exclude
+    fun toMap(): Map<String, Any?> {
+        return mapOf(
+            "name" to name,
+            "playerName" to playerName,
+            "race" to race,
+            "characterClasses" to characterClasses,
+            "antecedent" to antecedent,
+            "alignment" to alignment,
+            "experiencePoints" to experiencePoints,
+            "strength" to strength,
+            "dexterity" to dexterity,
+            "constitution" to constitution,
+            "charisma" to charisma,
+            "wisdom" to wisdom,
+            "intelligence" to intelligence,
+            "inspiration" to inspiration,
+            "proficiencyBonus" to proficiencyBonus,
+            "resistanceTests" to resistanceTests,
+            "skills" to skills
+        )
     }
 }

@@ -9,11 +9,15 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 import br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.FirebaseApp
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -89,10 +93,20 @@ class PersonagemFragment : Fragment() {
         val botao = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
         botao.setOnClickListener {
-            val database = Firebase.database.reference
-            val chave = database.child("personagens").push().key
-            database.child("personagens").child(chave!!).setValue("eiiiita")
+            val database = Firebase.database.reference.child("personagens").child("-MIHaTOXjsmxvrn3Nt4J")
+            /*val chave = database.child("personagens").push().key
+            database.child("personagens").child(chave!!).setValue("eiiiita")*/
+            val valueEventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    val value = dataSnapshot.getValue(CharacterSheet::class.java)
+                    Log.d("aaaa", "aaaa")
+                }
 
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.d("RESULT", databaseError.getMessage()) //Don't ignore errors!
+                }
+            }
+            database.addListenerForSingleValueEvent(valueEventListener)
         }
 
         return view
