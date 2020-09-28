@@ -17,13 +17,13 @@
     </fragment>
     <fragment
         android:id="@+id/navigation_habilidades"
-        android:name="br.pucpr.appdev.duffeck.rpg_ficha.HabilidadesFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.HabilidadesFragment"
         android:label="fragment_habilidades"
         tools:layout="@layout/fragment_habilidades" >
     </fragment>
     <fragment
         android:id="@+id/navigation_vida"
-        android:name="br.pucpr.appdev.duffeck.rpg_ficha.VidaFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.VidaFragment"
         android:label="fragment_vida"
         tools:layout="@layout/fragment_vida" />
     <fragment

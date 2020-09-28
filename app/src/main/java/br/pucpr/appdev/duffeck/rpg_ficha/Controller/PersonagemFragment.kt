@@ -13,9 +13,6 @@ import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 import br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemRecyclerViewAdapter
 
-/**
- * A fragment representing a list of Items.
- */
 class PersonagemFragment : Fragment() {
 
     private var columnCount = 1
@@ -42,14 +39,13 @@ class PersonagemFragment : Fragment() {
                     e?.let {
                         val view = lista?.findChildViewUnder(e.x, e.y)
                         view?.let {
-                                val position = lista?.getChildAdapterPosition(view)
+                            val position = lista?.getChildAdapterPosition(view)
                             val item = DataStore.ITEMS[position!!]
                             val bundle = bundleOf("position" to position)
                             findNavController().navigate(
                                 R.id.action_personagemFragment_to_habilidadesFragment,
                                 bundle
                             )
-                            Log.d("aaaaaaaaaaaaaa", item.content.toString())
                         }
                     }
 
@@ -78,9 +74,10 @@ class PersonagemFragment : Fragment() {
                     columnCount <= 1 -> LinearLayoutManager(context)
                     else -> GridLayoutManager(context, columnCount)
                 }
+                // @TODO Change data store
                 adapter =
                     PersonagemRecyclerViewAdapter(
-                        DataStore.ITEMS
+                        arrayListOf()
                     )
             }
         }

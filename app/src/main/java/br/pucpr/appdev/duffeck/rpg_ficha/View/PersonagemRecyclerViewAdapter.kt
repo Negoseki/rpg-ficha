@@ -5,38 +5,49 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore.DummyItem
+import org.w3c.dom.Text
 
 /**
  * [RecyclerView.Adapter] that can display a [DummyItem].
  * TODO: Replace the implementation with code for your data type.
  */
 class PersonagemRecyclerViewAdapter(
-    private val values: List<DummyItem>
+    private val characterSheetList: List<CharacterSheet>
 ) : RecyclerView.Adapter<PersonagemRecyclerViewAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.fragment_personagem, parent, false)
+            .inflate(R.layout.rcv_fragment_personagem, parent, false)
         return ViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = values[position]
-        holder.idView.text = item.id
-        holder.contentView.text = item.content
+        val item = characterSheetList[position]
+        holder.characterName.text = item.name
+        holder.characterRace.text = item.race
+        holder.characterClassLevel.text = ""
+        item.characterClasses.forEach {
+            holder.characterClassLevel.text =
+                holder.characterClassLevel.text.toString() + it.name + " / " + it.level + "\n"
+        }
     }
 
-    override fun getItemCount(): Int = values.size
+    override fun getItemCount(): Int = characterSheetList.size
 
     inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val idView: TextView = view.findViewById(R.id.item_number)
-        val contentView: TextView = view.findViewById(R.id.content)
+        var characterName: TextView
+        var characterRace: TextView
+        var characterClassLevel: TextView
 
-        override fun toString(): String {
-            return super.toString() + " '" + contentView.text + "'"
+        init {
+            characterName = view.findViewById(R.id.characterName)
+            characterRace = view.findViewById(R.id.characterRace)
+            characterClassLevel = view.findViewById(R.id.characterClassLevel)
         }
     }
 }

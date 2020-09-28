@@ -10,5 +10,5 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".Controller.PersonagemFragment"
-    tools:listitem="@layout/fragment_personagem"
+    tools:listitem="@layout/rcv_fragment_personagem"
     />
