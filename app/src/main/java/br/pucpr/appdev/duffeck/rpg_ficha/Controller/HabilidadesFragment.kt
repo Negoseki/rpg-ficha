@@ -5,12 +5,14 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+private const val CHARACTER_CODE = "codigoCharacter"
 
 /**
  * A simple [Fragment] subclass.
@@ -18,6 +20,8 @@ private const val ARG_PARAM2 = "param2"
  * create an instance of this fragment.
  */
 class HabilidadesFragment : Fragment() {
+    private lateinit var viewOfLayout: View
+
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -25,9 +29,10 @@ class HabilidadesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+            param1 = it.getString(CHARACTER_CODE)
         }
+
+
     }
 
     override fun onCreateView(
@@ -35,8 +40,38 @@ class HabilidadesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (context as MainActivity).toggleBottomNavigation(true)
-        return inflater.inflate(R.layout.fragment_habilidades, container, false)
+        (context as MainActivity).toggleBottomNavigation(false)
+        val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
+
+        //TODO: Remover mock do personagem
+        val characterClasses = arrayListOf<CharacterClass>()
+        characterClasses.add(CharacterClass("Barbeiro", 2))
+        characterClasses.add(CharacterClass("Jardineiro", 5))
+        val character = CharacterSheet(
+            name = "Jão",
+            characterClasses = characterClasses,
+            experiencePoints = 1450,
+            antecedent = "Advogado",
+            playerName = "Juriscley"
+        )
+        // fim do TODO
+
+        val chrName = viewOfLayout?.findViewById<TextView>(R.id.chrName)
+        chrName?.text = (character.name)
+
+        val chrClassLvl = viewOfLayout?.findViewById<TextView>(R.id.chrClassLvl)
+        val textoClasses = character.characterClasses.map { it.toString() }
+        chrClassLvl?.text = (textoClasses.joinToString())
+
+        val chrExp = viewOfLayout?.findViewById<TextView>(R.id.chrExp)
+        chrExp?.text = (character.experiencePoints.toString())
+
+        val chrAntecedente = viewOfLayout?.findViewById<TextView>(R.id.chrAntecedente)
+        chrAntecedente?.text = (character.antecedent)
+
+        val chrNomeJogador = viewOfLayout?.findViewById<TextView>(R.id.chrNomeJogador)
+        chrNomeJogador?.text = (character.playerName)
+        return viewOfLayout
     }
 
     companion object {
@@ -50,11 +85,10 @@ class HabilidadesFragment : Fragment() {
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance(param1: String, param2: String) =
+        fun newInstance(param1: String) =
             HabilidadesFragment().apply {
                 arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+                    putString(CHARACTER_CODE, param1)
                 }
             }
     }

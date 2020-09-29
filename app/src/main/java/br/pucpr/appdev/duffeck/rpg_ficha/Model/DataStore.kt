@@ -14,7 +14,7 @@ object DataStore {
     /**
      * An array of sample (dummy) items.
      */
-    val ITEMS: MutableList<CharacterSheet> = ArrayList()
+    var ITEMS: MutableList<CharacterSheet> = ArrayList()
 
     /**
      * A map of sample (dummy) items, by ID.
@@ -30,6 +30,11 @@ object DataStore {
 
     fun getItem(position: Int): CharacterSheet {
         return ITEMS.get(position)
+    }
+
+    fun getAllItems(): MutableList<CharacterSheet> {
+        ITEMS = APIConnection.getAllItems()
+        return ITEMS
     }
 
     fun editItem(character: CharacterSheet, position: Int) {

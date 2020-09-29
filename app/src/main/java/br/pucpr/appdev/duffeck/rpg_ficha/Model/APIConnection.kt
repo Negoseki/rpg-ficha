@@ -52,4 +52,21 @@ object APIConnection {
     fun clearItems() {
 
     }
+
+    fun getAllItems(): MutableList<CharacterSheet> {
+        val database = Firebase.database.reference.child("personagens")
+        var characters: MutableList<CharacterSheet> = arrayListOf()
+        val valueEventListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+                val characters = dataSnapshot.getValue(CharacterSheet::class.java) as MutableList<CharacterSheet>
+                Log.d("aaaa", "aaaa")
+            }
+
+            override fun onCancelled(databaseError: DatabaseError) {
+                Log.d("RESULT", databaseError.getMessage()) //Don't ignore errors!
+            }
+        }
+        database.addListenerForSingleValueEvent(valueEventListener)
+        return characters
+    }
 }
