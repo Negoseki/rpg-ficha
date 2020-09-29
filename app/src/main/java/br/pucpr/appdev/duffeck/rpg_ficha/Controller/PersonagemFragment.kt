@@ -40,7 +40,7 @@ class PersonagemFragment : Fragment() {
     ): View? {
         (context as MainActivity).toggleBottomNavigation(false)
         val view = inflater.inflate(R.layout.fragment_personagem_list, container, false)
-        lista = view.findViewById<RecyclerView>(R.id.list)
+        lista = view.findViewById(R.id.list)
         val gestureDetector =
             GestureDetector(context, object : GestureDetector.SimpleOnGestureListener() {
                 override fun onSingleTapConfirmed(e: MotionEvent?): Boolean {
@@ -76,18 +76,15 @@ class PersonagemFragment : Fragment() {
         })
 
         // Set the adapter
-        if (view is RecyclerView) {
-            with(view) {
-                layoutManager = when {
-                    columnCount <= 1 -> LinearLayoutManager(context)
-                    else -> GridLayoutManager(context, columnCount)
-                }
-                // @TODO Change data store
-                adapter =
-                    PersonagemRecyclerViewAdapter(
-                        arrayListOf()
-                    )
+        with(lista!!) {
+            layoutManager = when {
+                columnCount <= 1 -> LinearLayoutManager(context)
+                else -> GridLayoutManager(context, columnCount)
             }
+            adapter =
+                PersonagemRecyclerViewAdapter(
+                    DataStore.ITEMS
+                )
         }
 
         val botao = view.findViewById<FloatingActionButton>(R.id.btnAdd)

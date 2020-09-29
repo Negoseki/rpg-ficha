@@ -21,7 +21,17 @@ object DataStore {
      */
 
     init {
-        // Add some sample items.
+        val characterClasses = arrayListOf<CharacterClass>()
+        characterClasses.add(CharacterClass("Barbeiro", 2))
+        characterClasses.add(CharacterClass("Jardineiro", 5))
+        val character = CharacterSheet(
+            name = "Jão",
+            characterClasses = characterClasses,
+            experiencePoints = 1450,
+            antecedent = "Advogado",
+            playerName = "Juriscley"
+        )
+        ITEMS.add(character)
     }
 
     fun addItem(item: CharacterSheet) {

@@ -24,9 +24,11 @@ class CharacterSheet(
     var intelligence: Int = 0,
     var inspiration: Boolean = false,
     var proficiencyBonus: Int = 0,
-    var resistanceTests: MutableList<AbilityScoreEnum> = arrayListOf(),
+    var resistanceTests: MutableList<String> = arrayListOf(), // AbilityScoreEnum
     var skills: MutableList<Skill> = arrayListOf()
 ) {
+    @Exclude
+    var key: String = ""
 
     init {
         this.skills = mutableListOf()

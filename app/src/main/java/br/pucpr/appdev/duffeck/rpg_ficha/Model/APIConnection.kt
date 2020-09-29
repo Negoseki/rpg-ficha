@@ -25,13 +25,13 @@ object APIConnection {
         }
     }
 
-    fun getItem(idCharacter: String) {
-        var character: CharacterSheet
+    fun getItem(idCharacter: String): CharacterSheet {
+        var character: CharacterSheet = CharacterSheet()
         val database = Firebase.database.reference.child("personagens").child(idCharacter)
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val value = dataSnapshot.getValue()
-
+                val value = dataSnapshot.getValue(CharacterSheet::class.java)
+                character = value!!
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
@@ -39,10 +39,11 @@ object APIConnection {
             }
         }
         database.addListenerForSingleValueEvent(valueEventListener)
+        return character
     }
 
-    fun editItem(character: CharacterSheet, position: Int) {
-
+    fun editItem(character: CharacterSheet) {
+        val database = Firebase.database.reference.child("personagens").child(character.key)
     }
 
     fun removeItem(position: Int) {
