@@ -1,24 +1,19 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Model
 
-import java.util.ArrayList
-import java.util.HashMap
+import android.content.Context
+import br.pucpr.appdev.duffeck.rpg_ficha.R
+import java.io.File
+import java.util.*
 
-/**
- * Helper class for providing sample content for user interfaces created by
- * Android template wizards.
- *
- * TODO: Replace all uses of this class before publishing your app.
- */
 object DataStore {
-
-    /**
-     * An array of sample (dummy) items.
-     */
     var ITEMS: MutableList<CharacterSheet> = ArrayList()
+    var keys: MutableList<String> = arrayListOf()
 
-    /**
-     * A map of sample (dummy) items, by ID.
-     */
+    private var context: Context? = null
+    fun setContext(value: Context) {
+        context = value
+        loadKeys()
+    }
 
     init {
         val characterClasses = arrayListOf<CharacterClass>()
@@ -35,11 +30,16 @@ object DataStore {
     }
 
     fun addItem(item: CharacterSheet) {
+        APIConnection.addItem(item)
         ITEMS.add(item)
+        keys.add(item.key)
+        saveData()
     }
 
-    fun getItem(position: Int): CharacterSheet {
-        return ITEMS.get(position)
+    fun getItem(idCharacter: String): CharacterSheet {
+        val character = ITEMS.find { it.key === idCharacter }
+        return character!!
+
     }
 
     fun getAllItems(): MutableList<CharacterSheet> {
@@ -47,19 +47,52 @@ object DataStore {
         return ITEMS
     }
 
-    fun editItem(character: CharacterSheet, position: Int) {
-
+    fun editItem(character: CharacterSheet) {
+        val c = ITEMS.find { it.key == character.key }
+        APIConnection.editItem(character!!)
+        ITEMS[ITEMS.indexOf(c)] = character
     }
 
-    fun removeItem(position: Int) {
-
-    }
-
-    fun clearItems() {
-
+    fun removeItem(keyCharacter: String) {
+        ITEMS.removeAt(ITEMS.indexOf(ITEMS.find { it.key == keyCharacter }))
+        APIConnection.removeItem(keyCharacter)
+        keys.removeAt(keys.indexOf(keys.find { it == keyCharacter }))
+        saveData()
     }
 
     fun characterCount(): Int {
         return ITEMS.size;
+    }
+
+    fun loadKeys() {
+        val context = context ?: return
+        val file =
+            File(context.filesDir.absolutePath + "/${context.getString(R.string.filename_keys)}")
+        if (file.exists()) {
+            file.bufferedReader().use {
+                keys = arrayListOf()
+                val iterator = it.lineSequence().iterator()
+                while (iterator.hasNext()) {
+                    keys.add(iterator.next())
+                }
+            }
+        }
+    }
+
+    fun saveData() {
+        val context = context ?: return
+        val file =
+            File(context.filesDir.absolutePath + "/${context.getString(R.string.filename_keys)}")
+        if (!file.exists()) {
+            file.createNewFile()
+        } else {
+            file.writeText("")
+        }
+
+        file.printWriter().use {
+            for (key in keys) {
+                it.println(key)
+            }
+        }
     }
 }

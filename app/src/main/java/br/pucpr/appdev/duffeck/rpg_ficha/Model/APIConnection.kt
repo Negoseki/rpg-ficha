@@ -26,16 +26,17 @@ object APIConnection {
     }
 
     fun getItem(idCharacter: String): CharacterSheet {
-        var character: CharacterSheet = CharacterSheet()
-        val database = Firebase.database.reference.child("personagens").child(idCharacter)
+        var character = CharacterSheet()
+        val db = database.child(idCharacter)
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
                 val value = dataSnapshot.getValue(CharacterSheet::class.java)
+                character.key = idCharacter
                 character = value!!
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d("RESULT", databaseError.getMessage()) //Don't ignore errors!
+                Log.e("ERROR FIREBASE", databaseError.getMessage()) //Don't ignore errors!
             }
         }
         database.addListenerForSingleValueEvent(valueEventListener)
@@ -43,31 +44,30 @@ object APIConnection {
     }
 
     fun editItem(character: CharacterSheet) {
-        val database = Firebase.database.reference.child("personagens").child(character.key)
+        val db = database.child(character.key)
+        database.setValue(character)
     }
 
-    fun removeItem(position: Int) {
-
-    }
-
-    fun clearItems() {
-
+    fun removeItem(idCharacter: String) {
+        val db = database.child(idCharacter)
+        database.removeValue()
     }
 
     fun getAllItems(): MutableList<CharacterSheet> {
-        val database = Firebase.database.reference.child("personagens")
+        val db = database
         var characters: MutableList<CharacterSheet> = arrayListOf()
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val characters = dataSnapshot.getValue(CharacterSheet::class.java) as MutableList<CharacterSheet>
-                Log.d("aaaa", "aaaa")
+                val value =
+                    dataSnapshot.getValue(CharacterSheet::class.java) as MutableList<CharacterSheet>
+                characters = value
             }
 
             override fun onCancelled(databaseError: DatabaseError) {
-                Log.d("RESULT", databaseError.getMessage()) //Don't ignore errors!
+                Log.e("ERROR FIREBASE", databaseError.getMessage()) //Don't ignore errors!
             }
         }
-        database.addListenerForSingleValueEvent(valueEventListener)
+        db.addListenerForSingleValueEvent(valueEventListener)
         return characters
     }
 }
