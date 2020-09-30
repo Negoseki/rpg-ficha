@@ -214,4 +214,22 @@ class CharacterSheet(
             "skills" to skills
         )
     }
+
+    fun getMod(ability: AbilityScoreEnum): Int {
+        var valorBase = 0;
+        when(ability){
+            AbilityScoreEnum.STRENGTH -> valorBase = this.strength
+            AbilityScoreEnum.DEXTERITY -> valorBase = this.dexterity
+            AbilityScoreEnum.CONSTITUTION -> valorBase = this.constitution
+            AbilityScoreEnum.INTELLIGENCE -> valorBase = this.intelligence
+            AbilityScoreEnum.WISDOM -> valorBase = this.wisdom
+            AbilityScoreEnum.CHARISMA -> valorBase = this.charisma
+        }
+
+        if(valorBase > 0){
+            return (valorBase-10)/2
+        }
+        return 0;
+    }
+
 }

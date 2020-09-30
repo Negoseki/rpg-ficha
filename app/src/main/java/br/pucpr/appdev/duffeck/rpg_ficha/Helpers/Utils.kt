@@ -8,4 +8,11 @@ object Utils {
             .first { it.name == propertyName } as KProperty1<Any, *>
         return property.get(instance) as R
     }
+
+    fun getValueStringWithSignal(numero: Int): String {
+        if (numero > 0) {
+            return "+$numero"
+        }
+        return numero.toString()
+    }
 }

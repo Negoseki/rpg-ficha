@@ -6,8 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -40,7 +42,7 @@ class HabilidadesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        (context as MainActivity).toggleBottomNavigation(false)
+        (context as MainActivity).toggleBottomNavigation(true)
         val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
 
         //TODO: Remover mock do personagem
@@ -52,7 +54,13 @@ class HabilidadesFragment : Fragment() {
             characterClasses = characterClasses,
             experiencePoints = 1450,
             antecedent = "Advogado",
-            playerName = "Juriscley"
+            playerName = "Juriscley",
+            strength = 19,
+            dexterity = 16,
+            constitution = 13,
+            intelligence = 10,
+            wisdom = 7,
+            charisma = 4
         )
         // fim do TODO
 
@@ -71,6 +79,31 @@ class HabilidadesFragment : Fragment() {
 
         val chrNomeJogador = viewOfLayout?.findViewById<TextView>(R.id.chrNomeJogador)
         chrNomeJogador?.text = (character.playerName)
+
+        val chrFor = viewOfLayout?.findViewById<TextView>(R.id.chrFor)
+        chrFor?.text = (character.strength.toString())
+        val chrForMod = viewOfLayout?.findViewById<TextView>(R.id.chrForMod)
+        chrForMod?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.STRENGTH)))
+
+        val chrDes = viewOfLayout?.findViewById<TextView>(R.id.chrDes)
+        chrDes?.text = (character.dexterity.toString())
+        val chrDesMod = viewOfLayout?.findViewById<TextView>(R.id.chrDesMod)
+        chrDesMod?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.DEXTERITY)))
+
+        val chrCon = viewOfLayout?.findViewById<TextView>(R.id.chrCon)
+        chrCon?.text = (character.constitution.toString())
+        val chrConMod = viewOfLayout?.findViewById<TextView>(R.id.chrConMod)
+        chrConMod?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CONSTITUTION)))
+
+        val chrInt = viewOfLayout?.findViewById<TextView>(R.id.chrInt)
+        chrInt?.text = (character.intelligence.toString())
+        val chrIntMod = viewOfLayout?.findViewById<TextView>(R.id.chrIntMod)
+        chrIntMod?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.INTELLIGENCE)))
+
         return viewOfLayout
     }
 
