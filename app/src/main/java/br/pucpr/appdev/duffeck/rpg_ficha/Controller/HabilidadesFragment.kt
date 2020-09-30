@@ -11,6 +11,7 @@ import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.R
+import kotlinx.android.synthetic.main.activity_main.*
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -43,6 +44,7 @@ class HabilidadesFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         (context as MainActivity).toggleBottomNavigation(true)
+        (context as MainActivity).toolbar.title = "Habilidades"
         val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
 
         //TODO: Remover mock do personagem
