@@ -49,6 +49,10 @@ class HabilidadesFragment : Fragment() {
         val characterClasses = arrayListOf<CharacterClass>()
         characterClasses.add(CharacterClass("Barbeiro", 2))
         characterClasses.add(CharacterClass("Jardineiro", 5))
+        val resistanceTests = arrayListOf<String>();
+        resistanceTests.add(AbilityScoreEnum.STRENGTH.toString())
+        resistanceTests.add(AbilityScoreEnum.CONSTITUTION.toString())
+
         val character = CharacterSheet(
             name = "Jão",
             characterClasses = characterClasses,
@@ -61,7 +65,8 @@ class HabilidadesFragment : Fragment() {
             intelligence = 10,
             wisdom = 7,
             charisma = 4,
-            proficiencyBonus = 6
+            proficiencyBonus = 6,
+            resistanceTests = resistanceTests
         )
         // fim do TODO
 
@@ -83,39 +88,75 @@ class HabilidadesFragment : Fragment() {
 
         val chrFor = viewOfLayout?.findViewById<TextView>(R.id.chrFor)
         val chrForMod = viewOfLayout?.findViewById<TextView>(R.id.chrForMod)
+        val chrForRes = viewOfLayout?.findViewById<TextView>(R.id.chrForRes)
         chrForMod?.text = (character.strength.toString())
         chrFor?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.STRENGTH)))
+        var forRes = character.getMod(AbilityScoreEnum.STRENGTH)
+        if(character.resistanceTests.contains(AbilityScoreEnum.STRENGTH.toString())){
+            forRes += character.proficiencyBonus
+        }
+        chrForRes?.text = Utils.getValueStringWithSignal(forRes)
 
         val chrDes = viewOfLayout?.findViewById<TextView>(R.id.chrDes)
         val chrDesMod = viewOfLayout?.findViewById<TextView>(R.id.chrDesMod)
+        val chrDesRes = viewOfLayout?.findViewById<TextView>(R.id.chrDesRes)
         chrDesMod?.text = (character.dexterity.toString())
         chrDes?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.DEXTERITY)))
+        var forDes = character.getMod(AbilityScoreEnum.DEXTERITY)
+        if(character.resistanceTests.contains(AbilityScoreEnum.DEXTERITY.toString())){
+            forDes += character.proficiencyBonus
+        }
+        chrDesRes?.text = Utils.getValueStringWithSignal(forDes)
 
         val chrCon = viewOfLayout?.findViewById<TextView>(R.id.chrCon)
         val chrConMod = viewOfLayout?.findViewById<TextView>(R.id.chrConMod)
+        val chrConRes = viewOfLayout?.findViewById<TextView>(R.id.chrConRes)
         chrConMod?.text = (character.constitution.toString())
         chrCon?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CONSTITUTION)))
+        var forCon = character.getMod(AbilityScoreEnum.CONSTITUTION)
+        if(character.resistanceTests.contains(AbilityScoreEnum.CONSTITUTION.toString())){
+            forCon += character.proficiencyBonus
+        }
+        chrConRes?.text = Utils.getValueStringWithSignal(forCon)
 
         val chrInt = viewOfLayout?.findViewById<TextView>(R.id.chrInt)
         val chrIntMod = viewOfLayout?.findViewById<TextView>(R.id.chrIntMod)
+        val chrIntRes = viewOfLayout?.findViewById<TextView>(R.id.chrIntRes)
         chrIntMod?.text = (character.intelligence.toString())
         chrInt?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.INTELLIGENCE)))
+        var forInt = character.getMod(AbilityScoreEnum.INTELLIGENCE)
+        if(character.resistanceTests.contains(AbilityScoreEnum.INTELLIGENCE.toString())){
+            forInt += character.proficiencyBonus
+        }
+        chrIntRes?.text = Utils.getValueStringWithSignal(forInt)
 
         val chrWis = viewOfLayout?.findViewById<TextView>(R.id.chrWis)
         val chrWisMod = viewOfLayout?.findViewById<TextView>(R.id.chrWisMod)
+        val chrWisRes = viewOfLayout?.findViewById<TextView>(R.id.chrWisRes)
         chrWisMod?.text = (character.wisdom.toString())
         chrWis?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.WISDOM)))
+        var forWis = character.getMod(AbilityScoreEnum.WISDOM)
+        if(character.resistanceTests.contains(AbilityScoreEnum.WISDOM.toString())){
+            forWis += character.proficiencyBonus
+        }
+        chrWisRes?.text = Utils.getValueStringWithSignal(forWis)
 
         val chrCar = viewOfLayout?.findViewById<TextView>(R.id.chrCar)
         val chrCarMod = viewOfLayout?.findViewById<TextView>(R.id.chrCarMod)
+        val chrCarRes = viewOfLayout?.findViewById<TextView>(R.id.chrCarRes)
         chrCarMod?.text = (character.charisma.toString())
         chrCar?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CHARISMA)))
+        var forCar = character.getMod(AbilityScoreEnum.CHARISMA)
+        if(character.resistanceTests.contains(AbilityScoreEnum.CHARISMA.toString())){
+            forCar += character.proficiencyBonus
+        }
+        chrCarRes?.text = Utils.getValueStringWithSignal(forCar)
 
         val chrProficiencia = viewOfLayout?.findViewById<TextView>(R.id.chrProficiencia)
         chrProficiencia?.text =
