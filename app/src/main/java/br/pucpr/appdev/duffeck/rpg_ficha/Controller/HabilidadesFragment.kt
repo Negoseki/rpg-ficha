@@ -60,7 +60,8 @@ class HabilidadesFragment : Fragment() {
             constitution = 13,
             intelligence = 10,
             wisdom = 7,
-            charisma = 4
+            charisma = 4,
+            proficiencyBonus = 6
         )
         // fim do TODO
 
@@ -81,29 +82,49 @@ class HabilidadesFragment : Fragment() {
         chrNomeJogador?.text = (character.playerName)
 
         val chrFor = viewOfLayout?.findViewById<TextView>(R.id.chrFor)
-        chrFor?.text = (character.strength.toString())
         val chrForMod = viewOfLayout?.findViewById<TextView>(R.id.chrForMod)
-        chrForMod?.text =
+        chrForMod?.text = (character.strength.toString())
+        chrFor?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.STRENGTH)))
 
         val chrDes = viewOfLayout?.findViewById<TextView>(R.id.chrDes)
-        chrDes?.text = (character.dexterity.toString())
         val chrDesMod = viewOfLayout?.findViewById<TextView>(R.id.chrDesMod)
-        chrDesMod?.text =
+        chrDesMod?.text = (character.dexterity.toString())
+        chrDes?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.DEXTERITY)))
 
         val chrCon = viewOfLayout?.findViewById<TextView>(R.id.chrCon)
-        chrCon?.text = (character.constitution.toString())
         val chrConMod = viewOfLayout?.findViewById<TextView>(R.id.chrConMod)
-        chrConMod?.text =
+        chrConMod?.text = (character.constitution.toString())
+        chrCon?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CONSTITUTION)))
 
         val chrInt = viewOfLayout?.findViewById<TextView>(R.id.chrInt)
-        chrInt?.text = (character.intelligence.toString())
         val chrIntMod = viewOfLayout?.findViewById<TextView>(R.id.chrIntMod)
-        chrIntMod?.text =
+        chrIntMod?.text = (character.intelligence.toString())
+        chrInt?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.INTELLIGENCE)))
 
+        val chrWis = viewOfLayout?.findViewById<TextView>(R.id.chrWis)
+        val chrWisMod = viewOfLayout?.findViewById<TextView>(R.id.chrWisMod)
+        chrWisMod?.text = (character.wisdom.toString())
+        chrWis?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.WISDOM)))
+
+        val chrCar = viewOfLayout?.findViewById<TextView>(R.id.chrCar)
+        val chrCarMod = viewOfLayout?.findViewById<TextView>(R.id.chrCarMod)
+        chrCarMod?.text = (character.charisma.toString())
+        chrCar?.text =
+            (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CHARISMA)))
+
+        val chrProficiencia = viewOfLayout?.findViewById<TextView>(R.id.chrProficiencia)
+        chrProficiencia?.text =
+            (Utils.getValueStringWithSignal(character.proficiencyBonus))
+
+        val chrSabPassiva = viewOfLayout?.findViewById<TextView>(R.id.chrSabPassiva)
+        chrSabPassiva?.text =
+            (Utils.getValueStringWithSignal(character.getPassivePerception()))
+        chrSabPassiva
         return viewOfLayout
     }
 
