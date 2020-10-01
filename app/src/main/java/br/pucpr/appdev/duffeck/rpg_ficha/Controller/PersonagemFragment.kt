@@ -47,11 +47,11 @@ class PersonagemFragment : Fragment() {
                             val bundle = bundleOf("position" to position)
                             val preferences: SharedPreferences =
                                 (context as MainActivity).getSharedPreferences(
-                                    "chaveUser",
+                                    "chaveSheet",
                                     Context.MODE_PRIVATE
                                 )
                             with(preferences.edit()) {
-                                putString("chaveUser", item.key)
+                                putString("chaveSheet", item.key)
                                 commit()
                             }
 

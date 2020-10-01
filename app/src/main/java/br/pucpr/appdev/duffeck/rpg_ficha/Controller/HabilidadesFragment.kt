@@ -4,11 +4,11 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
@@ -43,7 +43,26 @@ class HabilidadesFragment : Fragment() {
         arguments?.let {
             param1 = it.getString(CHARACTER_CODE)
         }
+        setHasOptionsMenu(true);
 
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater!!.inflate(R.menu.menu_editar, menu)
+        super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        // Handle action bar item clicks here.
+        val id = item.getItemId()
+
+        if (id == R.id.mnuEditar) {
+            findNavController().navigate(
+                R.id.action_navigation_habilidades_to_editarHabilidades
+            )
+            return true
+        }
+        return super.onOptionsItemSelected(item)
 
     }
 
@@ -54,14 +73,14 @@ class HabilidadesFragment : Fragment() {
         // Inflate the layout for this fragment
         (context as MainActivity).toggleBottomNavigation(true)
         (context as MainActivity).toolbar.title = "Habilidades"
+        (context as MainActivity).toolbar.menu
 
         val preferences: SharedPreferences =
             (context as MainActivity).getSharedPreferences(
-                "chaveUser",
+                "chaveSheet",
                 Context.MODE_PRIVATE
             )
-        val chave = preferences.getString("chaveUser", "Teste")
-        (context as MainActivity).toolbar.title = chave
+        val chave = preferences.getString("chaveSheet", "Teste")
 
         val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
 

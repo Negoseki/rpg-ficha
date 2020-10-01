@@ -20,6 +20,9 @@
         android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.HabilidadesFragment"
         android:label="fragment_habilidades"
         tools:layout="@layout/fragment_habilidades" >
+        <action
+            android:id="@+id/action_navigation_habilidades_to_editarHabilidades"
+            app:destination="@id/editarHabilidades" />
     </fragment>
     <fragment
         android:id="@+id/navigation_vida"
@@ -31,4 +34,13 @@
         android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.AtaqueFragment"
         android:label="fragment_ataque"
         tools:layout="@layout/fragment_ataque" />
+    <fragment
+        android:id="@+id/editarHabilidades"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.EditarHabilidades"
+        android:label="fragment_editar_habilidades"
+        tools:layout="@layout/fragment_editar_habilidades" >
+        <action
+            android:id="@+id/action_editarHabilidades_to_navigation_habilidades"
+            app:destination="@id/navigation_habilidades" />
+    </fragment>
 </navigation>
