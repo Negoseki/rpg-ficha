@@ -58,9 +58,12 @@ object APIConnection {
         var characters: MutableList<CharacterSheet> = arrayListOf()
         val valueEventListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
-                val value =
-                    dataSnapshot.getValue(CharacterSheet::class.java) as MutableList<CharacterSheet>
-                characters = value
+                //val values = dataSnapshot.getValue()
+
+                for (child in dataSnapshot.getChildren()) {
+                    characters.add(child.getValue(CharacterSheet::class.java)!!)
+                }
+
             }
 
             override fun onCancelled(databaseError: DatabaseError) {

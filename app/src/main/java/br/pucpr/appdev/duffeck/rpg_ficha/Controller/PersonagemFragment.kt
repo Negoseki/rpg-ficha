@@ -1,7 +1,8 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
@@ -9,17 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 import br.pucpr.appdev.duffeck.rpg_ficha.View.PersonagemRecyclerViewAdapter
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import com.google.firebase.FirebaseApp
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.ValueEventListener
-import com.google.firebase.database.ktx.database
-import com.google.firebase.ktx.Firebase
+
 
 class PersonagemFragment : Fragment() {
 
@@ -50,6 +45,16 @@ class PersonagemFragment : Fragment() {
                             val position = lista?.getChildAdapterPosition(view)
                             val item = DataStore.ITEMS[position!!]
                             val bundle = bundleOf("position" to position)
+                            val preferences: SharedPreferences =
+                                (context as MainActivity).getSharedPreferences(
+                                    "chaveUser",
+                                    Context.MODE_PRIVATE
+                                )
+                            with(preferences.edit()) {
+                                putString("chaveUser", item.key)
+                                commit()
+                            }
+
                             findNavController().navigate(
                                 R.id.action_personagemFragment_to_habilidadesFragment,
                                 bundle
@@ -75,17 +80,20 @@ class PersonagemFragment : Fragment() {
 
         })
 
-        // Set the adapter
-        with(lista!!) {
-            layoutManager = when {
-                columnCount <= 1 -> LinearLayoutManager(context)
-                else -> GridLayoutManager(context, columnCount)
+        DataStore.getAllItems().subscribe {
+            with(lista!!) {
+                layoutManager = when {
+                    columnCount <= 1 -> LinearLayoutManager(context)
+                    else -> GridLayoutManager(context, columnCount)
+                }
+                adapter =
+                    PersonagemRecyclerViewAdapter(
+                        it
+                    )
             }
-            adapter =
-                PersonagemRecyclerViewAdapter(
-                    DataStore.ITEMS
-                )
         }
+        // Set the adapter
+
 
         val botao = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
@@ -103,7 +111,7 @@ class PersonagemFragment : Fragment() {
                 }
             }
             database.addListenerForSingleValueEvent(valueEventListener)
-             */
+            */
             findNavController().navigate(
                 R.id.action_personagemFragment_to_habilidadesFragment
             )

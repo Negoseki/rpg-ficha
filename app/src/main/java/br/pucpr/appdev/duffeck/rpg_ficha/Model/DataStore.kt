@@ -1,9 +1,15 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Model
 
 import android.content.Context
+import android.util.Log
 import br.pucpr.appdev.duffeck.rpg_ficha.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import java.io.File
-import java.util.*
+import io.reactivex.Observable
 
 object DataStore {
     var ITEMS: MutableList<CharacterSheet> = ArrayList()
@@ -16,7 +22,7 @@ object DataStore {
     }
 
     init {
-        val characterClasses = arrayListOf<CharacterClass>()
+        /*val characterClasses = arrayListOf<CharacterClass>()
         characterClasses.add(CharacterClass("Barbeiro", 2))
         characterClasses.add(CharacterClass("Jardineiro", 5))
         val character = CharacterSheet(
@@ -26,7 +32,9 @@ object DataStore {
             antecedent = "Advogado",
             playerName = "Juriscley"
         )
-        ITEMS.add(character)
+        character.key = "essa é a chave";
+        ITEMS.add(character)*/
+        this.getAllItems()
     }
 
     fun addItem(item: CharacterSheet) {
@@ -37,14 +45,37 @@ object DataStore {
     }
 
     fun getItem(idCharacter: String): CharacterSheet {
-        val character = ITEMS.find { it.key === idCharacter }
+        val itemsssss = ITEMS
+        val character = ITEMS.find { it.key == idCharacter }
         return character!!
 
     }
 
-    fun getAllItems(): MutableList<CharacterSheet> {
-        ITEMS = APIConnection.getAllItems()
-        return ITEMS
+    fun getAllItems(): Observable<MutableList<CharacterSheet>> {
+        return Observable.create<MutableList<CharacterSheet>> { emitter ->
+            val database = Firebase.database.reference.child("personagens")
+            val db = database
+            var characters: MutableList<CharacterSheet> = arrayListOf()
+            val valueEventListener = object : ValueEventListener {
+                override fun onDataChange(dataSnapshot: DataSnapshot) {
+                    //val values = dataSnapshot.getValue()
+
+                    for (child in dataSnapshot.getChildren()) {
+                        val personagem = child.getValue(CharacterSheet::class.java)!!
+                        personagem.key = child.key!!
+                        characters.add(personagem)
+                    }
+                    ITEMS = characters
+                    emitter.onNext(ITEMS)
+                    emitter.onComplete()
+                }
+
+                override fun onCancelled(databaseError: DatabaseError) {
+                    Log.e("ERROR FIREBASE", databaseError.getMessage()) //Don't ignore errors!
+                }
+            }
+            db.addListenerForSingleValueEvent(valueEventListener)
+        }
     }
 
     fun editItem(character: CharacterSheet) {

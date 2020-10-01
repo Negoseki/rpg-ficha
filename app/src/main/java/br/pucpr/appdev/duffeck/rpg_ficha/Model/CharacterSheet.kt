@@ -182,11 +182,11 @@ class CharacterSheet(
 
     fun getSkillModifier(skillValue: String): Int {
         val skillEnum = skills.find { it.key == skillValue }
-        skillEnum?.let {
-            if (it.isProeficiency) {
-                return getAbiltyScoreModifier(it.abilityScore) + proficiencyBonus + it.bonus
+        skillEnum?.abilityScore?.let {
+            if (skillEnum.isProeficiency) {
+                return getAbiltyScoreModifier(skillEnum.abilityScore) + proficiencyBonus + skillEnum.bonus
             } else {
-                return getAbiltyScoreModifier(it.abilityScore) + it.bonus
+                return getAbiltyScoreModifier(skillEnum.abilityScore) + skillEnum.bonus
             }
         }
         return 0

@@ -1,6 +1,9 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -9,8 +12,14 @@ import android.widget.TextView
 import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterClass
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.DataStore
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.R
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
 // TODO: Rename parameter arguments, choose names that match
@@ -45,10 +54,19 @@ class HabilidadesFragment : Fragment() {
         // Inflate the layout for this fragment
         (context as MainActivity).toggleBottomNavigation(true)
         (context as MainActivity).toolbar.title = "Habilidades"
+
+        val preferences: SharedPreferences =
+            (context as MainActivity).getSharedPreferences(
+                "chaveUser",
+                Context.MODE_PRIVATE
+            )
+        val chave = preferences.getString("chaveUser", "Teste")
+        (context as MainActivity).toolbar.title = chave
+
         val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
 
         //TODO: Remover mock do personagem
-        val characterClasses = arrayListOf<CharacterClass>()
+        /*val characterClasses = arrayListOf<CharacterClass>()
         characterClasses.add(CharacterClass("Barbeiro", 2))
         characterClasses.add(CharacterClass("Jardineiro", 5))
         val resistanceTests = arrayListOf<String>();
@@ -69,8 +87,16 @@ class HabilidadesFragment : Fragment() {
             charisma = 4,
             proficiencyBonus = 6,
             resistanceTests = resistanceTests
-        )
+        )*/
         // fim do TODO
+
+        val character = DataStore.getItem(chave.toString())
+        Log.d("RESULT2", character.name) //Don't ignore errors!
+        /*val key = database.push().key
+        character.key = key.toString()
+        key?.let{
+            database.child(key).setValue(character)
+        }*/
 
         val chrName = viewOfLayout?.findViewById<TextView>(R.id.chrName)
         chrName?.text = (character.name)
@@ -167,7 +193,7 @@ class HabilidadesFragment : Fragment() {
         val chrSabPassiva = viewOfLayout?.findViewById<TextView>(R.id.chrSabPassiva)
         chrSabPassiva?.text =
             (Utils.getValueStringWithSignal(character.getPassivePerception()))
-        chrSabPassiva
+
         return viewOfLayout
     }
 

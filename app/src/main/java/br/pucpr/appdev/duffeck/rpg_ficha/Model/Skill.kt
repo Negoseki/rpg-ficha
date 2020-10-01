@@ -6,9 +6,9 @@ import com.google.firebase.database.IgnoreExtraProperties
 
 @IgnoreExtraProperties
 class Skill(
-    var key: String,
-    var name: String,
-    val abilityScore: AbilityScoreEnum
+    var key: String = "",
+    var name: String = "",
+    val abilityScore: AbilityScoreEnum = AbilityScoreEnum.STRENGTH
 ) {
     var bonus: Int = 0
     var isProeficiency: Boolean = false
