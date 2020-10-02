@@ -36,7 +36,7 @@
         tools:layout="@layout/fragment_ataque" />
     <fragment
         android:id="@+id/editarHabilidades"
-        android:name="br.pucpr.appdev.duffeck.rpg_ficha.EditarHabilidades"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.EditarHabilidades"
         android:label="fragment_editar_habilidades"
         tools:layout="@layout/fragment_editar_habilidades" >
         <action

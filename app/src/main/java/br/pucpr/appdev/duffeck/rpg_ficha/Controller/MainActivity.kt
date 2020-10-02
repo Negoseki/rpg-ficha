@@ -50,10 +50,17 @@ class MainActivity : AppCompatActivity() {
         val navView: BottomNavigationView = findViewById(R.id.navigationView)
         if (enabled) {
             navView.visibility = View.VISIBLE
+        } else {
+            navView.visibility = View.GONE
+        }
+    }
+
+    fun toggleToolbar(enabled: Boolean) {
+        val navView: BottomNavigationView = findViewById(R.id.navigationView)
+        if (enabled) {
             toolbar.visibility = View.VISIBLE
         } else {
             toolbar.visibility = View.GONE
-            navView.visibility = View.GONE
         }
     }
 }

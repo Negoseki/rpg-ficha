@@ -34,6 +34,7 @@ class PersonagemFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         (context as MainActivity).toggleBottomNavigation(false)
+        (context as MainActivity).toggleToolbar(false)
         val view = inflater.inflate(R.layout.fragment_personagem_list, container, false)
         lista = view.findViewById(R.id.list)
         val gestureDetector =

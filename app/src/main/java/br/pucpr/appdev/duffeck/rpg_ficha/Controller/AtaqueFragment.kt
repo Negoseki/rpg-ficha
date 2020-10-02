@@ -36,6 +36,7 @@ class AtaqueFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         (context as MainActivity).toggleBottomNavigation(true)
+        (context as MainActivity).toggleToolbar(true)
         return inflater.inflate(R.layout.fragment_ataque, container, false)
     }
 
