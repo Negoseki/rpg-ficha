@@ -22,27 +22,11 @@ import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import kotlinx.android.synthetic.main.activity_main.*
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val CHARACTER_CODE = "codigoCharacter"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HabilidadesFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HabilidadesFragment : Fragment() {
     private lateinit var viewOfLayout: View
 
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(CHARACTER_CODE)
-        }
         setHasOptionsMenu(true);
 
     }
@@ -85,31 +69,6 @@ class HabilidadesFragment : Fragment() {
 
         val viewOfLayout = inflater.inflate(R.layout.fragment_habilidades, container, false)
 
-        //TODO: Remover mock do personagem
-        /*val characterClasses = arrayListOf<CharacterClass>()
-        characterClasses.add(CharacterClass("Barbeiro", 2))
-        characterClasses.add(CharacterClass("Jardineiro", 5))
-        val resistanceTests = arrayListOf<String>();
-        resistanceTests.add(AbilityScoreEnum.STRENGTH.toString())
-        resistanceTests.add(AbilityScoreEnum.CONSTITUTION.toString())
-
-        val character = CharacterSheet(
-            name = "Jão",
-            characterClasses = characterClasses,
-            experiencePoints = 1450,
-            antecedent = "Advogado",
-            playerName = "Juriscley",
-            strength = 19,
-            dexterity = 16,
-            constitution = 13,
-            intelligence = 10,
-            wisdom = 7,
-            charisma = 4,
-            proficiencyBonus = 6,
-            resistanceTests = resistanceTests
-        )*/
-        // fim do TODO
-
         val character = DataStore.getItem(chave.toString())
         Log.d("RESULT2", character.name) //Don't ignore errors!
         /*val key = database.push().key
@@ -141,7 +100,7 @@ class HabilidadesFragment : Fragment() {
         chrFor?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.STRENGTH)))
         var forRes = character.getMod(AbilityScoreEnum.STRENGTH)
-        if(character.resistanceTests.contains(AbilityScoreEnum.STRENGTH.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.STRENGTH.toString())) {
             forRes += character.proficiencyBonus
         }
         chrForRes?.text = Utils.getValueStringWithSignal(forRes)
@@ -153,7 +112,7 @@ class HabilidadesFragment : Fragment() {
         chrDes?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.DEXTERITY)))
         var forDes = character.getMod(AbilityScoreEnum.DEXTERITY)
-        if(character.resistanceTests.contains(AbilityScoreEnum.DEXTERITY.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.DEXTERITY.toString())) {
             forDes += character.proficiencyBonus
         }
         chrDesRes?.text = Utils.getValueStringWithSignal(forDes)
@@ -165,7 +124,7 @@ class HabilidadesFragment : Fragment() {
         chrCon?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CONSTITUTION)))
         var forCon = character.getMod(AbilityScoreEnum.CONSTITUTION)
-        if(character.resistanceTests.contains(AbilityScoreEnum.CONSTITUTION.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.CONSTITUTION.toString())) {
             forCon += character.proficiencyBonus
         }
         chrConRes?.text = Utils.getValueStringWithSignal(forCon)
@@ -177,7 +136,7 @@ class HabilidadesFragment : Fragment() {
         chrInt?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.INTELLIGENCE)))
         var forInt = character.getMod(AbilityScoreEnum.INTELLIGENCE)
-        if(character.resistanceTests.contains(AbilityScoreEnum.INTELLIGENCE.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.INTELLIGENCE.toString())) {
             forInt += character.proficiencyBonus
         }
         chrIntRes?.text = Utils.getValueStringWithSignal(forInt)
@@ -189,7 +148,7 @@ class HabilidadesFragment : Fragment() {
         chrWis?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.WISDOM)))
         var forWis = character.getMod(AbilityScoreEnum.WISDOM)
-        if(character.resistanceTests.contains(AbilityScoreEnum.WISDOM.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.WISDOM.toString())) {
             forWis += character.proficiencyBonus
         }
         chrWisRes?.text = Utils.getValueStringWithSignal(forWis)
@@ -201,7 +160,7 @@ class HabilidadesFragment : Fragment() {
         chrCar?.text =
             (Utils.getValueStringWithSignal(character.getMod(AbilityScoreEnum.CHARISMA)))
         var forCar = character.getMod(AbilityScoreEnum.CHARISMA)
-        if(character.resistanceTests.contains(AbilityScoreEnum.CHARISMA.toString())){
+        if (character.resistanceTests.contains(AbilityScoreEnum.CHARISMA.toString())) {
             forCar += character.proficiencyBonus
         }
         chrCarRes?.text = Utils.getValueStringWithSignal(forCar)
@@ -217,22 +176,4 @@ class HabilidadesFragment : Fragment() {
         return viewOfLayout
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HabilidadesFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String) =
-            HabilidadesFragment().apply {
-                arguments = Bundle().apply {
-                    putString(CHARACTER_CODE, param1)
-                }
-            }
-    }
 }

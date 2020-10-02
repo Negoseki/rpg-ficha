@@ -2,7 +2,6 @@ package br.pucpr.appdev.duffeck.rpg_ficha.Model
 
 import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.AbilityScoreEnum
-import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.RaceEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.SkillEnum
 import com.google.firebase.database.Exclude
 import com.google.firebase.database.IgnoreExtraProperties
@@ -25,7 +24,14 @@ class CharacterSheet(
     var inspiration: Boolean = false,
     var proficiencyBonus: Int = 0,
     var resistanceTests: MutableList<String> = arrayListOf(), // AbilityScoreEnum
-    var skills: MutableList<Skill> = arrayListOf()
+    var skills: MutableList<Skill> = arrayListOf(),
+    var bonusCA: Int = 0,
+    var pvAtual: Int = 0,
+    var pvTotal: Int = 0,
+    var dadosVida: String = "",
+    var deslocamento: Double = 0.0,
+    var savingThrows: Throws = Throws(),
+    var failThrows: Throws = Throws()
 ) {
     @Exclude
     var key: String = ""
@@ -180,6 +186,10 @@ class CharacterSheet(
         ).toInt()
     }
 
+    fun getIniciativa(): Int {
+        return getAbiltyScoreModifier(AbilityScoreEnum.DEXTERITY)
+    }
+
     fun getSkillModifier(skillValue: String): Int {
         val skillEnum = skills.find { it.key == skillValue }
         skillEnum?.abilityScore?.let {
@@ -190,6 +200,10 @@ class CharacterSheet(
             }
         }
         return 0
+    }
+
+    fun getCABase(): Int {
+        return 10 + getAbiltyScoreModifier(AbilityScoreEnum.DEXTERITY)
     }
 
     @Exclude
@@ -217,7 +231,7 @@ class CharacterSheet(
 
     fun getMod(ability: AbilityScoreEnum): Int {
         var valorBase = 0;
-        when(ability){
+        when (ability) {
             AbilityScoreEnum.STRENGTH -> valorBase = this.strength
             AbilityScoreEnum.DEXTERITY -> valorBase = this.dexterity
             AbilityScoreEnum.CONSTITUTION -> valorBase = this.constitution
@@ -226,10 +240,11 @@ class CharacterSheet(
             AbilityScoreEnum.CHARISMA -> valorBase = this.charisma
         }
 
-        if(valorBase > 0){
-            return (valorBase-10)/2
+        if (valorBase > 0) {
+            return (valorBase - 10) / 2
         }
         return 0;
     }
+
 
 }

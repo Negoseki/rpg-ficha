@@ -5,6 +5,7 @@ import android.util.Log
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
@@ -12,6 +13,10 @@ import java.io.File
 import io.reactivex.Observable
 
 object DataStore {
+    private lateinit var database: DatabaseReference
+
+    private const val CHARACTER_BASE = "personagens"
+
     var ITEMS: MutableList<CharacterSheet> = ArrayList()
     var keys: MutableList<String> = arrayListOf()
 
@@ -22,30 +27,21 @@ object DataStore {
     }
 
     init {
-        /*val characterClasses = arrayListOf<CharacterClass>()
-        characterClasses.add(CharacterClass("Barbeiro", 2))
-        characterClasses.add(CharacterClass("Jardineiro", 5))
-        val character = CharacterSheet(
-            name = "Jão",
-            characterClasses = characterClasses,
-            experiencePoints = 1450,
-            antecedent = "Advogado",
-            playerName = "Juriscley"
-        )
-        character.key = "essa é a chave";
-        ITEMS.add(character)*/
+        database = Firebase.database.reference.child(CHARACTER_BASE)
         this.getAllItems()
     }
 
     fun addItem(item: CharacterSheet) {
-        APIConnection.addItem(item)
-        ITEMS.add(item)
-        keys.add(item.key)
-        saveData()
+        val chave = database.push().key
+        chave?.let {
+            database.child(it).setValue(item)
+            ITEMS.add(item)
+            keys.add(item.key)
+            saveData()
+        }
     }
 
     fun getItem(idCharacter: String): CharacterSheet {
-        val itemsssss = ITEMS
         val character = ITEMS.find { it.key == idCharacter }
         return character!!
 
@@ -53,13 +49,9 @@ object DataStore {
 
     fun getAllItems(): Observable<MutableList<CharacterSheet>> {
         return Observable.create<MutableList<CharacterSheet>> { emitter ->
-            val database = Firebase.database.reference.child("personagens")
-            val db = database
             var characters: MutableList<CharacterSheet> = arrayListOf()
             val valueEventListener = object : ValueEventListener {
                 override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    //val values = dataSnapshot.getValue()
-
                     for (child in dataSnapshot.getChildren()) {
                         val personagem = child.getValue(CharacterSheet::class.java)!!
                         personagem.key = child.key!!
@@ -74,19 +66,23 @@ object DataStore {
                     Log.e("ERROR FIREBASE", databaseError.getMessage()) //Don't ignore errors!
                 }
             }
-            db.addListenerForSingleValueEvent(valueEventListener)
+            database.addListenerForSingleValueEvent(valueEventListener)
         }
     }
 
     fun editItem(character: CharacterSheet) {
         val c = ITEMS.find { it.key == character.key }
-        APIConnection.editItem(character!!)
-        ITEMS[ITEMS.indexOf(c)] = character
+        c?.let {
+            val db = database.child(it.key)
+            db.setValue(it)
+            ITEMS[ITEMS.indexOf(it)] = character
+        }
     }
 
     fun removeItem(keyCharacter: String) {
         ITEMS.removeAt(ITEMS.indexOf(ITEMS.find { it.key == keyCharacter }))
-        APIConnection.removeItem(keyCharacter)
+        val db = database.child(keyCharacter)
+        db.removeValue()
         keys.removeAt(keys.indexOf(keys.find { it == keyCharacter }))
         saveData()
     }
