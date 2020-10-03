@@ -28,7 +28,6 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
         </LinearLayout>
@@ -72,18 +71,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:imeOptions="actionDone"
-                android:inputType="number"
                 android:maxLines="1"
                 android:singleLine="true" />
         </LinearLayout>
 
         <ImageButton
-            android:id="@+id/addExtraClass"
+            android:id="@+id/removeExtraAtaque"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/roundedbutton"
             android:backgroundTint="@color/red"
-            android:src="@android:drawable/ic_input_add"
+            android:src="@drawable/ic_baseline_remove_24"
             android:tint="@color/white" />
     </LinearLayout>
 
@@ -98,5 +96,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:imeOptions="actionDone"
-        android:inputType="number" />
+        android:maxLines="1"
+        android:singleLine="true" />
 </LinearLayout>

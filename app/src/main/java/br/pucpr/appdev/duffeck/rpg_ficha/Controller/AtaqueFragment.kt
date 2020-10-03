@@ -93,15 +93,16 @@ class AtaqueFragment : Fragment() {
         character = DataStore.getItem(chave!!)
 
         character?.let {
-            btnAdd = view.findViewById(R.id.layExtraAtaques)
+            btnAdd = view.findViewById(R.id.btnAdd)
             layExtraAtaques = view.findViewById(R.id.layExtraAtaques)
             txtProeficiencia = view.findViewById(R.id.txtProeficiencia)
-            txtFor = view.findViewById(R.id.layExtraAtaques)
-            txtDex = view.findViewById(R.id.layExtraAtaques)
-            txtAtaqueNome = view.findViewById(R.id.layExtraAtaques)
-            txtAtaqueBonus = view.findViewById(R.id.layExtraAtaques)
-            txtAtaqueDano = view.findViewById(R.id.layExtraAtaques)
-            txtAtaqueDescricao = view.findViewById(R.id.layExtraAtaques)
+            txtFor = view.findViewById(R.id.txtFor)
+            txtDex = view.findViewById(R.id.txtDex)
+            txtAtaqueNome = view.findViewById(R.id.txtAtaqueNome)
+            txtAtaqueBonus = view.findViewById(R.id.txtAtaqueBonus)
+            txtAtaqueDano = view.findViewById(R.id.txtAtaqueDano)
+            txtAtaqueDescricao = view.findViewById(R.id.txtAtaqueDescricao)
+            btnAdd!!.setOnClickListener { addExtraFieldOnClick() }
             loadCharacterInfo()
             enableEditText(false)
         }
@@ -111,7 +112,6 @@ class AtaqueFragment : Fragment() {
     }
 
     fun enableEditText(isEnabled: Boolean) {
-        txtProeficiencia!!.isEnabled = isEnabled
         txtAtaqueNome!!.isEnabled = isEnabled
         txtAtaqueBonus!!.isEnabled = isEnabled
         txtAtaqueDano!!.isEnabled = isEnabled
@@ -140,7 +140,9 @@ class AtaqueFragment : Fragment() {
                 attack.name = txtAtaqueNome!!.text.toString()
                 attack.description = txtAtaqueDescricao!!.text.toString()
                 attack.damage = txtAtaqueDano!!.text.toString()
-                attack.bonus = txtAtaqueBonus!!.text.toString().toInt()
+                attack.bonus = if (txtAtaqueBonus!!.text.toString()
+                        .isNotEmpty()
+                ) txtAtaqueBonus!!.text.toString().toInt() else 0
                 it.attacks.add(attack)
 
                 for (v in listExtraAtaques) {
@@ -164,17 +166,23 @@ class AtaqueFragment : Fragment() {
     fun loadCharacterInfo() {
         val df = DecimalFormat("###.##")
         character?.let {
+            listExtraAtaques.forEach { e ->
+                layExtraAtaques!!.removeView(e)
+            }
+            listExtraAtaques = mutableListOf()
 
             txtProeficiencia!!.text = it.proficiencyBonus.toString()
             txtFor!!.text = it.getAbiltyScoreModifier(AbilityScoreEnum.STRENGTH).toString()
             txtDex!!.text = it.getAbiltyScoreModifier(AbilityScoreEnum.DEXTERITY).toString()
-            txtAtaqueNome!!.setText(it.attacks.first().name)
-            txtAtaqueBonus!!.setText(it.attacks.first().bonus.toString())
-            txtAtaqueDano!!.setText(it.attacks.first().damage)
-            txtAtaqueDescricao!!.setText(it.attacks.first().description)
-            it.attacks.forEach { e ->
-                if (e != it.attacks.first()) {
-                    addExtraFieldOnClick(e)
+            if (it.attacks.size > 0) {
+                txtAtaqueNome!!.setText(it.attacks.first().name)
+                txtAtaqueBonus!!.setText(it.attacks.first().bonus.toString())
+                txtAtaqueDano!!.setText(it.attacks.first().damage)
+                txtAtaqueDescricao!!.setText(it.attacks.first().description)
+                it.attacks.forEach { e ->
+                    if (e != it.attacks.first()) {
+                        addExtraFieldOnClick(e)
+                    }
                 }
             }
 
@@ -182,10 +190,10 @@ class AtaqueFragment : Fragment() {
     }
 
     fun addExtraFieldOnClick(attack: Attack? = null) {
-        val viewExtraFields = layoutInflater.inflate(R.layout.fragment_cadastrar_ficha_fields, null)
+        val viewExtraFields = layoutInflater.inflate(R.layout.fragment_ataque_fields, null)
         layExtraAtaques!!.addView(viewExtraFields)
         listExtraAtaques.add(viewExtraFields)
-        viewExtraFields.findViewById<ImageButton>(R.id.removeExtraClass)
+        viewExtraFields.findViewById<ImageButton>(R.id.removeExtraAtaque)
             .setOnClickListener { removeExtraField(listExtraAtaques.indexOf(viewExtraFields)) }
 
         attack?.let {
