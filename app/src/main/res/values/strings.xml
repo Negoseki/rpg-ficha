@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">rpg-ficha</string>
+    <string name="title_activity_navigation_menu">MainActivity</string>
+    <string name="title_habilidades">Habilidades</string>
+    <string name="title_vida">Defesa</string>
+    <string name="title_ataque">Ataque</string>
+    <string name="title_magia">Magia</string>
+    <string name="title_info">Info</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="filename_keys">keys.txt</string>
+</resources>

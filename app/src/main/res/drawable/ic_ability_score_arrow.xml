@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="40dp"
+    android:height="40dp"
+    android:viewportWidth="100"
+
+    android:viewportHeight="90">
+    <group
+        android:name="triableGroup"
+        android:pivotX="50"
+        android:pivotY="44"
+        android:rotation="180">
+        <path
+            android:name="triangle"
+            android:fillColor="@color/cardview_light_background"
+            android:pathData="m 48,0 l 50,70 -96,0 z"
+            android:strokeWidth="3"
+            android:strokeColor="@color/cardview_dark_background" />
+    </group>
+</vector>

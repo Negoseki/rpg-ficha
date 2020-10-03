@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_habilidades"
+        android:icon="@drawable/ic_baseline_signal_cellular_alt_24"
+        android:title="@string/title_habilidades" />
+
+    <item
+        android:id="@+id/navigation_vida"
+        android:icon="@drawable/ic_baseline_favorite_24"
+        android:title="@string/title_vida" />
+
+    <item
+        android:id="@+id/navigation_ataque"
+        android:icon="@drawable/ic_baseline_colorize_24"
+        android:title="@string/title_ataque" />
+    <!--
+        <item
+            android:id="@+id/navigation_magia"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/title_magia" />
+
+        <item
+            android:id="@+id/navigation_info"
+            android:icon="@drawable/ic_baseline_favorite_24"
+            android:title="@string/title_info" />
+    -->
+</menu>

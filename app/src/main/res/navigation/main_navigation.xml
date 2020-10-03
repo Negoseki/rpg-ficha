@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/personagemFragment">
+
+    <fragment
+        android:id="@+id/personagemFragment"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.PersonagemFragment"
+        android:label="fragment_personagem_list"
+        tools:layout="@layout/fragment_personagem_list">
+        <action
+            android:id="@+id/action_personagemFragment_to_habilidadesFragment"
+            app:destination="@id/navigation_habilidades"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out" />
+        <action
+            android:id="@+id/action_personagemFragment_to_cadastrarFicha"
+            app:destination="@id/cadastrarFicha"
+            app:enterAnim="@anim/slide_in"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_habilidades"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.HabilidadesFragment"
+        android:label="fragment_habilidades"
+        tools:layout="@layout/fragment_habilidades" />
+    <fragment
+        android:id="@+id/navigation_vida"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.VidaFragment"
+        android:label="fragment_vida"
+        tools:layout="@layout/fragment_vida" />
+    <fragment
+        android:id="@+id/navigation_ataque"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.AtaqueFragment"
+        android:label="fragment_ataque"
+        tools:layout="@layout/fragment_ataque" />
+    <fragment
+        android:id="@+id/cadastrarFicha"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.CadastrarFicha"
+        android:label="fragment_cadastrar_ficha"
+        tools:layout="@layout/fragment_cadastrar_ficha">
+        <action
+            android:id="@+id/action_cadastrarFicha_to_personagemFragment"
+            app:destination="@id/personagemFragment"
+            app:enterAnim="@anim/slide_out"
+            app:exitAnim="@anim/fade_out" />
+    </fragment>
+</navigation>
