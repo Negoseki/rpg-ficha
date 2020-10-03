@@ -1,5 +1,6 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -29,12 +30,13 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.fragNavHostFragment)
         val drawer: DrawerLayout = findViewById(R.id.layDrawer)
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_habilidades,
                 R.id.navigation_vida,
                 R.id.navigation_ataque
-            ), drawer
+            )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView?.setupWithNavController(navController)
@@ -55,7 +57,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toggleToolbar(enabled: Boolean) {
-        val navView: BottomNavigationView = findViewById(R.id.navigationView)
         if (enabled) {
             toolbar.visibility = View.VISIBLE
         } else {
