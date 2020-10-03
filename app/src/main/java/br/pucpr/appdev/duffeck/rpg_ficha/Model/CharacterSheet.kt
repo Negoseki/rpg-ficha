@@ -31,7 +31,8 @@ class CharacterSheet(
     var dadosVida: String = "",
     var deslocamento: Double = 0.0,
     var savingThrows: Throws = Throws(),
-    var failThrows: Throws = Throws()
+    var failThrows: Throws = Throws(),
+    var attacks: MutableList<Attack> = arrayListOf()
 ) {
     @Exclude
     var key: String = ""
@@ -225,7 +226,8 @@ class CharacterSheet(
             "inspiration" to inspiration,
             "proficiencyBonus" to proficiencyBonus,
             "resistanceTests" to resistanceTests,
-            "skills" to skills
+            "skills" to skills,
+            "attacks" to attacks
         )
     }
 }

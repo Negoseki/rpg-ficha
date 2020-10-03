@@ -6,17 +6,19 @@ import com.google.firebase.database.IgnoreExtraProperties
 @IgnoreExtraProperties
 class Attack(
     var name: String = "",
-    var bonus: Int = 0
+    var bonus: Int = 0,
+    var damage: String = "",
+    var description: String = ""
 ) {
 
 
-/*
     @Exclude
     fun toMap(): Map<String, Any?> {
         return mapOf(
             "name" to name,
-            "level" to level
+            "bonus" to bonus,
+            "damage" to damage,
+            "description" to description
         )
     }
- */
 }
