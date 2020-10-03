@@ -1,5 +1,6 @@
 package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView
     lateinit var appBarConfiguration: AppBarConfiguration
 
+    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,16 +31,16 @@ class MainActivity : AppCompatActivity() {
 
         val navController = findNavController(R.id.fragNavHostFragment)
         val drawer: DrawerLayout = findViewById(R.id.layDrawer)
+
         appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_habilidades,
                 R.id.navigation_vida,
                 R.id.navigation_ataque
-            ), drawer
+            )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navigationView?.setupWithNavController(navController)
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -56,7 +58,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     fun toggleToolbar(enabled: Boolean) {
-        val navView: BottomNavigationView = findViewById(R.id.navigationView)
         if (enabled) {
             toolbar.visibility = View.VISIBLE
         } else {
