@@ -19,7 +19,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navigationView: BottomNavigationView
     lateinit var appBarConfiguration: AppBarConfiguration
 
-    @SuppressLint("RestrictedApi")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
