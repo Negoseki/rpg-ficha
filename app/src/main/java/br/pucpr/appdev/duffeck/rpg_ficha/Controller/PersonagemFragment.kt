@@ -92,22 +92,8 @@ class PersonagemFragment : Fragment() {
         val botao = view.findViewById<FloatingActionButton>(R.id.btnAdd)
 
         botao.setOnClickListener {
-            /*
-            val database = Firebase.database.reference.child("personagens").child("-MIHaTOXjsmxvrn3Nt4J")
-            val valueEventListener = object : ValueEventListener {
-                override fun onDataChange(dataSnapshot: DataSnapshot) {
-                    val value = dataSnapshot.getValue(CharacterSheet::class.java)
-                    Log.d("aaaa", "aaaa")
-                }
-
-                override fun onCancelled(databaseError: DatabaseError) {
-                    Log.d("RESULT", databaseError.getMessage()) //Don't ignore errors!
-                }
-            }
-            database.addListenerForSingleValueEvent(valueEventListener)
-            */
             findNavController().navigate(
-                R.id.action_personagemFragment_to_habilidadesFragment
+                R.id.action_personagemFragment_to_cadastrarFicha
             )
         }
 

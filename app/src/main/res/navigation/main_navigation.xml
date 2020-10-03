@@ -14,6 +14,9 @@
         <action
             android:id="@+id/action_personagemFragment_to_habilidadesFragment"
             app:destination="@id/navigation_habilidades" />
+        <action
+            android:id="@+id/action_personagemFragment_to_cadastrarFicha"
+            app:destination="@id/cadastrarFicha" />
     </fragment>
     <fragment
         android:id="@+id/navigation_habilidades"
@@ -42,5 +45,14 @@
         <action
             android:id="@+id/action_editarHabilidades_to_navigation_habilidades"
             app:destination="@id/navigation_habilidades" />
+    </fragment>
+    <fragment
+        android:id="@+id/cadastrarFicha"
+        android:name="br.pucpr.appdev.duffeck.rpg_ficha.Controller.CadastrarFicha"
+        android:label="fragment_cadastrar_ficha"
+        tools:layout="@layout/fragment_cadastrar_ficha" >
+        <action
+            android:id="@+id/action_cadastrarFicha_to_personagemFragment"
+            app:destination="@id/personagemFragment" />
     </fragment>
 </navigation>

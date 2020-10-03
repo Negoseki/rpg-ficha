@@ -7,6 +7,7 @@ import android.view.*
 import android.widget.EditText
 import android.widget.TextView
 import androidx.core.content.ContextCompat
+import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import br.pucpr.appdev.duffeck.rpg_ficha.Helpers.Utils
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
@@ -69,7 +70,6 @@ class VidaFragment : Fragment() {
             return true
         }
         return super.onOptionsItemSelected(item)
-
     }
 
 
@@ -128,6 +128,13 @@ class VidaFragment : Fragment() {
             checkFailT1!!.isChecked = it.failThrows.throw1
             checkFailT3!!.isChecked = it.failThrows.throw3
             checkFailT2!!.isChecked = it.failThrows.throw2
+            txtCABaseBonus!!.addTextChangedListener {
+                val value = if (txtCABaseBonus!!.text.toString()
+                        .isNotEmpty()
+                ) txtCABaseBonus!!.text.toString().toInt() else 0
+                txtCATotal!!.text =
+                    ((character!!.getCABase() + value).toString())
+            }
         }
     }
 

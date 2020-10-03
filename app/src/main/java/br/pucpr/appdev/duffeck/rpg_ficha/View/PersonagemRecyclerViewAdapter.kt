@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.CharacterSheet
+import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.CharacterClassEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.Model.Enum.RaceEnum
 import br.pucpr.appdev.duffeck.rpg_ficha.R
 
@@ -25,41 +26,48 @@ class PersonagemRecyclerViewAdapter(
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = characterSheetList[position]
         holder.characterName.text = item.name
-        holder.characterRace.text = item.race
+        RaceEnum.values().find { e -> e.value == item.race }?.let {
+            holder.characterRace.text = it.raceName
+        }
         holder.characterClassLevel.text = ""
         item.characterClasses.forEach {
+            CharacterClassEnum.values().find { e -> e.value == it.name }?.let {
+
+                holder.characterClassLevel.text =
+                    holder.characterClassLevel.text.toString() + it.className
+            }
             holder.characterClassLevel.text =
-                holder.characterClassLevel.text.toString() + it.name + " / " + it.level + "\n"
+                holder.characterClassLevel.text.toString() + " / " + it.level + "\n"
         }
         holder.imgRace.setImageResource(getImagePerRace(item.race))
     }
 
     fun getImagePerRace(race: String): Int {
-        if (race === RaceEnum.DRAGONBORN.value) {
+        if (race == RaceEnum.DRAGONBORN.value) {
             return R.drawable.dragonborn
         }
-        if (race === RaceEnum.DWARF.value) {
+        if (race == RaceEnum.DWARF.value) {
             return R.drawable.dwarf
         }
-        if (race === RaceEnum.ELF.value) {
+        if (race == RaceEnum.ELF.value) {
             return R.drawable.elf
         }
-        if (race === RaceEnum.GNOME.value) {
+        if (race == RaceEnum.GNOME.value) {
             return R.drawable.gnome
         }
-        if (race === RaceEnum.HALFLING.value) {
+        if (race == RaceEnum.HALFLING.value) {
             return R.drawable.halfling
         }
-        if (race === RaceEnum.HALF_ELF.value) {
+        if (race == RaceEnum.HALF_ELF.value) {
             return R.drawable.half_elf
         }
-        if (race === RaceEnum.HALF_ORC.value) {
+        if (race == RaceEnum.HALF_ORC.value) {
             return R.drawable.half_orc
         }
-        if (race === RaceEnum.HUMAN.value) {
+        if (race == RaceEnum.HUMAN.value) {
             return R.drawable.human
         }
-        if (race === RaceEnum.TIEFLING.value) {
+        if (race == RaceEnum.TIEFLING.value) {
             return R.drawable.tiefling
         }
         return R.drawable.unknown
