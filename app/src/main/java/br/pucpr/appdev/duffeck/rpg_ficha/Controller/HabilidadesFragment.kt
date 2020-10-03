@@ -9,6 +9,7 @@ import android.text.TextWatcher
 import android.view.*
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -84,6 +85,7 @@ class HabilidadesFragment : Fragment() {
                 )
             } else {
                 DataStore.editItem(character!!)
+                Toast.makeText(context, "Informações salvas com sucesso", Toast.LENGTH_SHORT).show()
                 item.setIcon(
                     ContextCompat.getDrawable(
                         (context as MainActivity),

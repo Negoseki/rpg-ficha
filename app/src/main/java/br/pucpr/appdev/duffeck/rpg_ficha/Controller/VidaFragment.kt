@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.*
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
@@ -171,6 +172,7 @@ class VidaFragment : Fragment() {
                 it.failThrows.throw2 = checkFailT3!!.isChecked
                 it.failThrows.throw3 = checkFailT2!!.isChecked
                 DataStore.editItem(it)
+                Toast.makeText(context, "Informações salvas com sucesso", Toast.LENGTH_SHORT).show()
                 loadCharacterInfo()
             }
         }
