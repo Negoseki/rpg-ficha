@@ -16,7 +16,7 @@
         <TextView
             android:id="@+id/chrName"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="8dp"
@@ -42,7 +42,7 @@
             <TextView
                 android:id="@+id/chrClassLvl"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:text="Classe / Nível"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -51,7 +51,7 @@
             <TextView
                 android:id="@+id/chrExp"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:text="Exp"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
             <TextView
                 android:id="@+id/chrAntecedente"
                 android:layout_width="250dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:text="Antecedente"
                 android:textSize="16sp"
                 app:layout_constraintStart_toStartOf="parent"
@@ -82,7 +82,7 @@
             <TextView
                 android:id="@+id/chrNomeJogador"
                 android:layout_width="100dp"
-                android:layout_height="wrap_content"
+                android:layout_height="24dp"
                 android:text="Jogador"
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -208,12 +208,16 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/imageView3" />
 
-        <TextView
+        <EditText
             android:id="@+id/chrForMod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:enabled="false"
             android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -222,12 +226,16 @@
             app:layout_constraintStart_toStartOf="@+id/imageView"
             app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-        <TextView
+        <EditText
             android:id="@+id/chrDesMod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:enabled="false"
             android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -236,12 +244,16 @@
             app:layout_constraintStart_toStartOf="@+id/imageView2"
             app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
-        <TextView
+        <EditText
             android:id="@+id/chrConMod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:enabled="false"
             android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -303,12 +315,16 @@
             app:layout_constraintStart_toStartOf="@+id/chrInt"
             app:layout_constraintTop_toTopOf="@+id/chrInt" />
 
-        <TextView
+        <EditText
             android:id="@+id/chrIntMod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:enabled="false"
             android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -376,20 +392,6 @@
             app:layout_constraintStart_toEndOf="@+id/chrInt"
             app:layout_constraintTop_toBottomOf="@+id/textWis" />
 
-        <TextView
-            android:id="@+id/chrCarMod"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
-            android:elevation="1dp"
-            android:text="TextView"
-            android:textAlignment="center"
-            android:textColor="#000000"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            app:layout_constraintEnd_toEndOf="@+id/imageView18"
-            app:layout_constraintStart_toStartOf="@+id/imageView18"
-            app:layout_constraintTop_toBottomOf="@+id/imageView18" />
 
         <TextView
             android:id="@+id/textWis"
@@ -443,12 +445,16 @@
             app:layout_constraintStart_toStartOf="@+id/imageView18"
             app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
-        <TextView
+        <EditText
             android:id="@+id/chrWisMod"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="4dp"
+            android:enabled="false"
             android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
             android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="18sp"
@@ -481,12 +487,37 @@
             app:layout_constraintStart_toStartOf="@+id/imageView18"
             app:layout_constraintTop_toTopOf="@+id/imageView18" />
 
-        <LinearLayout
+        <EditText
+            android:id="@+id/chrCarMod"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:elevation="1dp"
+            android:enabled="false"
+            android:text="TextView"
+            android:imeOptions="actionDone"
+            android:maxLines="1"
+            android:singleLine="true"
+            android:inputType="numberSigned"
+            android:textAlignment="center"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/imageView18"
+            app:layout_constraintStart_toStartOf="@+id/imageView18"
+            app:layout_constraintTop_toBottomOf="@+id/imageView18" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/layoutProfSab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:gravity="center"
             android:orientation="horizontal"
+            android:paddingTop="16dp"
+            android:paddingRight="16dp"
+            android:paddingLeft="16dp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView16">
 
@@ -495,38 +526,56 @@
                 android:id="@+id/textProficiencia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="32dp"
-                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Proficiência"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/chrProficiencia"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="8dp"
+                android:enabled="false"
+                android:inputType="numberSigned"
                 android:textColor="#000000"
                 android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintBottom_toBottomOf="@+id/textProficiencia"
+                app:layout_constraintStart_toEndOf="@+id/textProficiencia"
+                app:layout_constraintTop_toTopOf="@+id/textProficiencia" />
 
             <TextView
                 android:id="@+id/textSabPassiva"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
+                android:layout_marginLeft="32dp"
+                android:layout_marginTop="16dp"
                 android:text="Sab. Passiva"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintStart_toEndOf="@+id/chrProficiencia"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/chrSabPassiva"
-                android:layout_width="50dp"
-                android:layout_height="50dp"
-                android:layout_marginTop="4dp"
+                android:layout_width="80dp"
+                android:layout_height="60dp"
+                android:layout_marginLeft="8dp"
                 android:textColor="#000000"
                 android:textSize="32sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:imeOptions="actionDone"
+                android:maxLines="1"
+                android:singleLine="true"
+                app:layout_constraintBottom_toBottomOf="@+id/textSabPassiva"
+                app:layout_constraintStart_toEndOf="@+id/textSabPassiva"
+                app:layout_constraintTop_toTopOf="@+id/textSabPassiva" />
 
-        </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/textResistencia"
@@ -546,23 +595,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textResistencia">
 
-            <TextView
-                android:id="@+id/textForRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutFor"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="FOR"
-                android:textSize="18sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textForRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="FOR"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkForRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/chrForRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -573,19 +634,33 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textDesRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutDes"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="DES"
-                android:textSize="18sp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+
+                <TextView
+                    android:id="@+id/textDesRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="DES"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkDesRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/chrDesRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -596,19 +671,31 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textConRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutCon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="CON"
-                android:textSize="18sp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textConRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="CON"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkConRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/chrConRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -624,23 +711,37 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:paddingLeft="16dp"
+            android:paddingRight="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linLayout1">
 
-            <TextView
-                android:id="@+id/textIntRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutInt"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="INT"
-                android:textSize="18sp" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textIntRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="INT"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkIntRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/chrIntRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -651,19 +752,31 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textWisRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutWis"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="WIS"
-                android:textSize="18sp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textWisRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="WIS"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkWisRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/chrWisRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"
@@ -674,19 +787,31 @@
                 android:textSize="32sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/textCarRes"
-                android:layout_width="17dp"
+            <LinearLayout
+                android:id="@+id/linLayoutCar"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_weight="1"
-                android:text="CAR"
-                android:textSize="18sp" />
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textCarRes"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:text="CAR"
+                    android:textSize="18sp" />
+
+                <com.google.android.material.checkbox.MaterialCheckBox
+                    android:id="@+id/chkCarRes"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"/>
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/chrCarRes"
-                android:layout_width="50dp"
+                android:layout_width="0dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="4dp"
                 android:layout_marginLeft="4dp"

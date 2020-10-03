@@ -13,7 +13,8 @@
         android:layout_height="?attr/actionBarSize"
         android:background="?attr/colorPrimary"
         app:title="NavigationView"
-        app:titleTextColor="@color/white" />
+        app:titleTextColor="@color/white"
+        android:theme="@style/AppTheme.ToolbarTheme"/>
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/layDrawer"
