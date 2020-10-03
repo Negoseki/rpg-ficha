@@ -122,10 +122,12 @@ class AtaqueFragment : Fragment() {
             val extraAtaqueBonus = it.findViewById<EditText>(R.id.txtAtaqueBonus)
             val extraAtaqueDano = it.findViewById<EditText>(R.id.txtAtaqueDano)
             val extraAtaqueDescricao = it.findViewById<EditText>(R.id.txtAtaqueDescricao)
+            val removeExtraAtaque = it.findViewById<ImageButton>(R.id.removeExtraAtaque)
             extraAtaqueNome.isEnabled = isEnabled
             extraAtaqueBonus.isEnabled = isEnabled
             extraAtaqueDano.isEnabled = isEnabled
             extraAtaqueDescricao.isEnabled = isEnabled
+            removeExtraAtaque.visibility = if (isEnabled) View.VISIBLE else View.GONE
         }
     }
 
