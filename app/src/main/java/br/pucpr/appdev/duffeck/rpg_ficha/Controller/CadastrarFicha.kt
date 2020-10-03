@@ -114,6 +114,7 @@ class CadastrarFicha : Fragment() {
 
     fun removeExtraField(index: Int) {
         layExtraFields!!.removeView(extraFieldsLayout[index])
+        extraFieldsLayout.removeAt(index)
     }
 
     fun saveCharacterSheet() {

@@ -51,7 +51,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@drawable/roundedbutton"
-        android:backgroundTint="#9F0808"
+        android:backgroundTint="@color/red"
         android:src="@drawable/ic_baseline_remove_24"
         android:tint="@color/white" />
 </LinearLayout>
