@@ -2,10 +2,10 @@ package br.pucpr.appdev.duffeck.rpg_ficha.Controller
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.graphics.PorterDuff
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.*
 import android.widget.EditText
 import android.widget.TextView
@@ -60,7 +60,6 @@ class HabilidadesFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setHasOptionsMenu(true);
-
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -95,6 +94,14 @@ class HabilidadesFragment : Fragment() {
         }
         return super.onOptionsItemSelected(item)
 
+    }
+
+    fun menuIconColor(menuItem: MenuItem, color: Int) {
+        val drawable = menuItem.icon
+        if (drawable != null) {
+            drawable.mutate()
+            drawable.setColorFilter(color, PorterDuff.Mode.SRC_ATOP)
+        }
     }
 
     override fun onCreateView(

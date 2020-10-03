@@ -16,7 +16,7 @@
             app:destination="@id/navigation_habilidades" />
         <action
             android:id="@+id/action_personagemFragment_to_cadastrarFicha"
-            app:destination="@id/cadastrarFicha" />
+            app:destination="@id/cadastrarFicha"/>
     </fragment>
     <fragment
         android:id="@+id/navigation_habilidades"
